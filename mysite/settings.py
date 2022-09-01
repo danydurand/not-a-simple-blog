@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+# from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tbmy3e#g&so_o7u=g&x=5ie6xi4qbku%&1r_8qnvj=sw5)##vq'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -125,9 +127,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'postmaster@sandbox40e0c699eea44612b1483b740f96ba4d.mailgun.org'
-EMAIL_HOST_PASSWORD = 'f7aabcb6cb1f9d89aa1bc5023837032d-3d0809fb-85c0d7f1'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_HOST = str(os.environ.get("EMAIL_HOST"))
+# EMAIL_PORT = os.environ.get("EMAIL_PORT")
+# EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
+# EMAIL_HOST_USER = str(os.environ.get("EMAIL_HOST_USER"))
+# EMAIL_HOST_PASSWORD = str(os.environ.get("EMAIL_HOST_PASSWORD"))
